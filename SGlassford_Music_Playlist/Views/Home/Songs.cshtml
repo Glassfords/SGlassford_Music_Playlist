@@ -1,0 +1,25 @@
+﻿@model IEnumerable<SGlassford_Music_Playlist.Models.Song>
+
+
+@{
+    ViewBag.Title = "Songs";
+}
+
+<table class="table">
+    <tr class="text-center">
+        <th>
+            <h2>Songs</h2>
+        </th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href='@Url.Action("SongDetails","Home", new { id = item.SongId })' class="list-group-item list-group-item-action">@Html.DisplayFor(model => item.Name) by @Html.DisplayFor(model => item.Artist) </a>
+            </td>
+        </tr>
+
+    }
+</table>
+

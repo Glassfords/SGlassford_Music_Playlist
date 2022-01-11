@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SGlassford_Music_Playlist.Models.Playlist>
+
+@{
+    ViewBag.Title = "Playlists";
+}
+
+@if (!Model.Any())
+{
+    <h1>You Have No Playlists</h1>
+    <button type="button" onclick="location.href='@Url.Action("CreatePlaylist","Member")'" class="button-77">Create a New Playlist</button>
+}
+else
+{
+
+<div class="container">
+    @foreach (var playlist in Model)
+    {
+        <ul class="list-group spacing">
+            <li class="list-group-item clearfix">
+                <h3 class="list-group-item-heading">
+                    <a class="stretched-link" onclick="location.href='@Url.Action("PlayPlaylist","Member",new { id=playlist.PlaylistId })'">@playlist.PlaylistName</a>
+                </h3>
+                <p class="list-group-item-text lead">
+                    <span class="fw-bold">Description:</span> @playlist.Description
+                    <br />
+                    <span class="fw-bold">Songs:</span> @playlist.Songs.Count
+                </p>
+                <div class="btn-toolbar pull-right" role="toolbar" aria-label="">
+                    <div class="btn-group">
+                    </div>
+                    <input type="button" value="Add Songs" onclick="location.href='@Url.Action("AddSong","Member",new { id=playlist.PlaylistId })'" class="btn button-1" />
+                    <div class="divider"></div>
+                    <input type="button" value="Edit" onclick="location.href='@Url.Action("EditPlaylist","Member",new { id=playlist.PlaylistId })'" class="btn button-1" />
+                    <div class="divider"></div>
+                    <input type="button" value="Delete" onclick="location.href='@Url.Action("DeletePlaylist","Member",new { id=playlist.PlaylistId })'" class="btn button-1" />
+
+
+                </div>
+            </li>
+        </ul>
+    }
+    <div class="spacing">
+        <button role="button" onclick="location.href='@Url.Action("CreatePlaylist","Member")'" class="button-77" >Create a New Playlist</button>
+    </div>
+</div>
+    
+}
+
+

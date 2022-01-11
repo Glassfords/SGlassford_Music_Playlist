@@ -1,0 +1,52 @@
+﻿@model SGlassford_Music_Playlist.Models.Playlist
+
+@{
+    ViewBag.Title = "Play Playlist";
+}
+
+<h1>Playlist Name: @Model.PlaylistName</h1>
+<h2>Playlist Description: @Model.Description</h2>
+<h2>Songs: @Model.Songs.Count</h2>
+<hr />
+
+
+<div class="btn-group">
+    <div class="dropdown" style="padding-left:10px">
+        <button class="btn btn-secondary dropdown-toggle button-1" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Compare This Playlist To Other Playlists
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            @foreach (var playlist in ViewBag.data)
+            {
+                <a class="dropdown-item" onclick="location.href='@Url.Action("ComparePlaylists","Member",new { id=Model.PlaylistId,secondId=playlist.PlaylistId})'">@playlist.PlaylistName</a>
+            }
+        </div>
+    </div>
+</div>
+
+
+@foreach (var song in Model.Songs)
+{
+<div class="container-fluid song-details">
+    <div class="col">
+        <div class="row">
+            <h1>@song.Name</h1>
+        </div>
+        <div class="row">
+            <h2>@song.Artist</h2>
+        </div>
+        <div class="col">
+                <div class="row media-padding" style="padding-bottom:50px">
+                    <video class="azuremediaplayer music-player amp-default-skin col-10" controls width="400" height="1" poster="record.jpg" data-setup='{"techOrder": ["azureHtml5JS", "flashSS", "html5FairPlayHLS","silverlightSS", "html5"], "nativeControlsForTouch": false}'>
+                        <source src="@song.FilePath" type="application/vnd.ms-sstr+xml" />
+                        <p class="amp-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video
+                        </p>
+                    </video>
+                </div>
+        </div>
+    </div>
+</div>
+
+}
+

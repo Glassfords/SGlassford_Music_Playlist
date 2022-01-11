@@ -1,0 +1,29 @@
+﻿@model SGlassford_Music_Playlist.Models.Song
+
+@{
+    ViewBag.Title = "SongDetails";
+}
+
+
+<div class="container-fluid song-details">
+    <div class="col">
+        <div class="row">
+            <h1>@Model.Name</h1>
+        </div>
+        <div class="row">
+            <h2>@Model.Artist</h2>
+        </div>
+        <div class="row">
+            <div class="row" style="padding-bottom:40px">
+                <video class="azuremediaplayer amp-default-skin music-player col-10" autoplay controls width="640" height="5" poster="record.jpg" data-setup='{"techOrder": ["azureHtml5JS", "flashSS", "html5FairPlayHLS","silverlightSS", "html5"], "nativeControlsForTouch": false}'>
+                    <source src="@Model.FilePath" type="application/vnd.ms-sstr+xml" />
+                    <p class="amp-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video
+                    </p>
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+
